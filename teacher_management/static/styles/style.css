@@ -1,0 +1,254 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F7F7F7;
+    color: #333333;
+}
+
+a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.header-footer {
+    width: 100%;
+    background-color: #333333;
+    color: #FFFFFF;
+    padding: 20px;
+}
+
+footer {
+    position: sticky;
+    bottom: 0 !important;
+    left: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+main {
+        padding: 20px;
+        margin: 0;
+       }
+
+    .container {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    }
+
+    .search {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    padding: 10px;
+    flex: 1;
+    }
+
+    button{
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 18px;
+        margin-left: 10px;
+    }
+
+    a.add {
+        background-color: #0074D9;
+        color: #FFFFFF;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-left: 10px;
+    }
+
+    a.add:hover {
+        background-color: #0061B5;
+    }
+
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    }
+
+    th, td {
+    padding: 10px;
+    text-align: left;
+    }
+
+    th {
+    background-color: #F1F1F1;
+    border-bottom: 2px solid #CCCCCC;
+    }
+
+    td {
+    border-bottom: 1px solid #CCCCCC;
+    }
+
+    td:last-child, th:last-child {
+    text-align: left;
+    }
+
+    td a {
+    color: #0074D9;
+    }
+
+    td a:hover {
+    text-decoration: underline;
+    }
+
+    /* td: table data
+    th: table header */
+    /* Responsive styles */
+    /* @media (max-width: 768px) {
+    .container {
+    padding: 10px;
+    }
+    .search {
+    flex-wrap: wrap;
+    }
+    input[type="text"] {
+    margin-bottom: 10px;
+    }
+    button.add {
+    margin-top: 10px;
+    }
+    } */
+
+.teacher-form-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  border: 1px solid #cccccc;
+  border-radius: 50px;
+  background-color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.teacher-form-container h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form-row label {
+  flex-basis: 150px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.form-row input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+
+
+.form-actions button,.link-button {
+  padding: 10px 20px;
+  margin-left: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #0080ff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-actions .link-button{
+  background-color: #009900;
+}
+
+.form-actions button[type="submit"] {
+  background-color: #009900;
+}
+
+/* Hover và focus style cho nút Save */
+.form-actions button[type="submit"]:hover,
+.form-actions button[type="submit"]:focus {
+  background-color: #00cc00;
+}
+
+/* Hover và focus style cho nút Cancel */
+.form-actions .link-button:hover,
+.form-actions .link-button:focus {
+  background-color: #ff5050;
+}
+
+
+/* Style cho các trường bắt buộc nhập */
+input:required {
+  border-bottom: 2px solid #0080ff;
+}
+
+/* Style cho trường số điện thoại */
+input[type="tel"] {
+  width: 100%;
+}
+
+/* Style cho trường năm sinh */
+input[type="date"] {
+  width: 100%;
+}
+
+/* Style cho trường tiền dạy 1 giờ */
+input[type="number"] {
+  width: 100%;
+}
+
+/* Style cho phần border của input khi được focus */
+input:focus {
+  border-bottom: 2px solid #0080ff;
+}
+
+/* Style cho phần border của input khi không focus */
+input:not(:focus) {
+  border-bottom: 2px solid #ccc;
+}
+
+
+.cancel-btn{
+    background-color: #2C79FD;
+}

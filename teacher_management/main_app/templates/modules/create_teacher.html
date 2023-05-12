@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+
+{% block title%}
+    <title>Tạo mới giản viên</title>
+{% endblock %}
+
+{% block content %}
+<main>
+        <div class="teacher-form-container">
+            {% if mess != '' %}
+                <span>{{mess}}</span>
+            {% endif %}
+            <form method="POST" >
+                  {% csrf_token %}
+                <h2>Thông tin</h2>
+                <div class="form-row">
+                    <label for="teacher-code">Mã giáo viên:</label>
+                    {{form.teacher_id}}
+                </div>
+                <div class="form-row">
+                    <label for="teacher-degree">Bằng cấp:</label>
+                    {{form.degree}}
+                </div>
+                <div class="form-row">
+                    <label for="teacher-fullname">Họ và tên:</label>
+                    {{form.full_name}}
+                </div>
+                <div class="form-row">
+                    <label for="teacher-birthday">Năm sinh:</label>
+                    {{form.year_of_birth}}
+                </div>
+                <div class="form-row">
+                    <label for="teacher-pay">Tiền dạy 1 giờ:</label>
+                    {{form.salary_per_hour}}
+                </div>
+                <div class="form-row">
+                    <label for="teacher-phone">Số điện thoại:</label>
+                    {{form.phone}}
+                </div>
+                <div class="form-row">
+                    <label for="teacher-address">Địa chỉ:</label>
+                    {{form.location}}
+                </div>
+                <div class="form-actions">
+                    <a class="link-button cancel-btn" href="{% url 'home' %}">Cancel</a>
+                    <button class="link-button save-btn" type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+
+{% block title%}
+    <title>Danh sách giảng viên</title>
+{% endblock %}
+
+{% block content %}
+    <main>
+       <div class="container">
+            <form class="search" method="POST">
+                  {% csrf_token %}
+                <input type="text" name="keyword" placeholder="Tìm kiếm giáo viên...">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                <a class="add" href="{% url 'create-teacher' %}"><i class="fas fa-plus"></i> Thêm mới</a>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã giáo viên</th>
+                        <th>Họ và tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users%}
+
+                         <tr>
+                            <td><a href="{% url 'teacher-info' user.id %}">{{forloop.counter}}</a></td>
+                            <td><a href="{% url 'teacher-info' user.id %}">{{user.teacher_id}}</a></td>
+                            <td><a href="{% url 'teacher-info' user.id %}">{{user.full_name}}</a></td>
+                            <td><a href="{% url 'teacher-info' user.id %}">{{user.phone}}</a></td>
+                            <td><a href="{% url 'teacher-info' user.id %}">{{user.location}}</a></td>
+                         </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </div>
+    </main>
+{% endblock %}
+
+<!--{% block footer %}-->
+<!--      <p>© 2023 - Xem thông tin giáo viên</p>-->
+<!--{% endblock %}-->
