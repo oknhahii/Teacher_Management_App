@@ -4,3 +4,37 @@
 
 # teacher_management_app
 </div>
+
+--> Tới thư mục đã tải về : 
+```bash
+cd Teach
+
+```
+
+--> Tạo môi trường :
+```bash
+# Cài gói virtualenv nếu đây là lần đầu của bạn.
+pip install virtualenv
+
+# Tạo môi trường có tên là env
+virtualenv env
+
+```
+
+--> Kích hoạt môi trường :
+```bash
+envname\scripts\activate
+
+
+```
+--> cài gió cần thiết :
+```bash
+Pip install django 
+
+```
+
+--> Chạy app:
+```bash
+python manage.py runserver
+
+```
