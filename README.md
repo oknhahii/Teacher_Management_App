@@ -33,6 +33,18 @@ Pip install django
 
 ```
 
+```
+--> Tạo bản recovery
+```bash
+python manage.py makemigrations
+```
+
+```
+--> Enable sự thay đổi
+```bash
+python manage.py migrate
+```
+
 --> Chạy app:
 ```bash
 python manage.py runserver
