@@ -33,13 +33,12 @@ Pip install django
 
 ```
 
-```
---> Tạo bản recovery
+--> Tạo bản recovery:
 ```bash
 python manage.py makemigrations
 ```
 
-```
+
 --> Enable sự thay đổi
 ```bash
 python manage.py migrate
