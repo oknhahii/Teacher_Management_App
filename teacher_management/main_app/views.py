@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from .models import User,Class
+from .models import User,Class, Subject
 from django.http import HttpResponse
-from .forms import UserForm
+from .forms import UserForm, ClassForm
 from django.contrib import messages
 import uuid
 
@@ -10,13 +10,13 @@ import uuid
 
 def home(request):
     global users
-    users = User.objects.all()
+    users = User.objects.filter(is_superuser=False)
 
     print(users)
     print(request.method)
     if request.method == 'POST':
         keyword = request.POST.get('keyword')
-        users = User.objects.filter(Q(full_name__icontains=keyword)|Q(teacher_id__icontains=keyword)|Q(phone__icontains=keyword)|Q(location__icontains=keyword))
+        users = User.objects.filter((Q(full_name__icontains=keyword)|Q(teacher_id__icontains=keyword)|Q(phone__icontains=keyword)|Q(location__icontains=keyword))&Q(is_superuser=False))
     context = {'users':users}
 
     return render(request, 'modules/home.html',context)
@@ -29,7 +29,7 @@ def teacherInfo(request, pk):
     for cl in _class:
         total_of_lesson += cl.number_of_lessons
         print(salary)
-        salary += cl.number_of_lessons*(user.degree + cl.subject_factor + cl.class_factor) * user.salary_per_hour
+        salary += cl.number_of_lessons*(user.degree + cl.subject.subject_factor+ cl.class_factor) * user.salary_per_hour
     salary = int(salary)
     context = {'user':user, 'owner_class':_class, 'salary': salary, 'total_of_lesson': total_of_lesson}
     return render(request,'modules/teacher_info.html',context)
@@ -112,8 +112,37 @@ def deleteTeacher(request,pk):
     salary, total_of_lesson = 0, 0
     for cl in _class:
         total_of_lesson += cl.number_of_lessons
-        salary += cl.number_of_lessons * (user.degree + cl.subject_factor + cl.class_factor) * user.salary_per_hour
+        salary += cl.number_of_lessons * (user.degree + cl.subject.subject_factor + cl.class_factor) * user.salary_per_hour
     salary = int(salary)
     context = {'user': user, 'owner_class': _class, 'salary': salary, 'total_of_lesson': total_of_lesson}
 
     return render(request, 'modules/delete_teacher.html', context)
+
+def addClass(request,pk):
+    form = ClassForm()
+    global mess
+    mess = ''
+
+    if request.method == 'POST':
+        class_id = Class.objects.filter(class_id= request.POST.get('class_id'))
+        try:
+            teacher = User.objects.get(id=pk)
+            if len(class_id) != 0:
+                raise ("Class id id exists or teacher_id is invalid")
+            else:
+                sj = Subject.objects.all()[int(request.POST.get('subject')) - 1]
+                Class.objects.create(
+                    class_id=request.POST.get('class_id'),
+                    class_name=request.POST.get('class_name'),
+                    class_factor=float(request.POST.get('class_factor')),
+                    number_of_lessons=int(request.POST.get('number_of_lessons')),
+                    teacher=teacher,
+                    subject=sj
+                )
+                return redirect('teacher-info', pk=pk)
+        except Exception as exception:
+            mess = 'Phone number or teacher id exists'
+
+
+    context = {'form':form, 'mess': mess}
+    return render(request, 'modules/add_class.html', context)

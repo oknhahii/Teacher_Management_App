@@ -23,13 +23,26 @@
     font-weight: bold;
 }
 
+.actions{
+   position: relative;
+    top: 46px;
+    left: 91%;
+    display: flex;
+    height: 50px;
+    flex-direction: column;
+    z-index: -1;
+}
+
 .actions .button,button {
-    color: white;
+   color: white;
     border: none;
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 8px 0;
     cursor: pointer;
     margin-left: 10px;
+    text-align: center;
+    width: 90px;
+    margin-top: 10px;
 }
 
 .back {
@@ -155,19 +168,39 @@ tr:hover {
     background-color: #f81818;
 }
 
+.actions .button.add-class {
+    background-color: #5059ff;
+}
+
+.actions .button.add-class:hover {
+    background-color: #303af0;
+}
+.fog{
+   position: fixed;
+   top: 0;
+   left: 0;
+    width: 100vw;
+   height: 100vh;
+   background-color: gray;
+   zindex : 3;
+   opacity : 0.5
+}
+
 
 </style>
-
+<div class="fog"></div>
 <main>
             <div class="teacher-info">
-                <div class="info-header">
-                    <h2>Giáo viên</h2>
-                    <div class="actions">
+                 <div class="actions">
                         <a class="button edit-teacher" href="{% url 'update-teacher' user.id%}">Edit</a>
                         <a class="button  delete-teacher" href="{% url 'delete-teacher' user.id %}">Delete</a>
+                        <a class="button add-class" href="{% url 'add-class' user.id    %}">Add Class</a>
                     </div>
+                <div class="info-header">
+                    <h2>Giáo viên</h2>
                 </div>
                 <div class="teacher-details">
+
                     <div class="teacher-row">
                         <span>Mã giáo viên:</span>
                         <span>{{user.teacher_id}}</span>
@@ -215,7 +248,7 @@ tr:hover {
                 </div>
             </div>
 
-             <form class="overlay" method="post" action="">
+             <form class="overlay" method="post" action="" style="zindex: 100">
                  {% csrf_token %}
                 <div class="confirmation-box">
                     <h3>Are you sure?</h3>
@@ -246,7 +279,7 @@ tr:hover {
                             <td>{{cl.class_id}}</td>
                             <td>{{cl.class_name}}</td>
                             <td>{{cl.class_factor}}</td>
-                            <td>{{cl.subject_factor}}</td>
+                            <td>{{cl.subject.subject_factor}}</td>
                             <td>{{cl.number_of_lessons}}</td>
                         </tr>
                        {% endfor %}

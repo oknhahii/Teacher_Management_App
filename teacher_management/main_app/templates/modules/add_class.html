@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block title%}
+    <title>Tạo mới giản viên</title>
+{% endblock %}
+
+{% block content %}
+<main>
+        <div class="teacher-form-container">
+            {% if mess != '' %}
+                <span>{{mess}}</span>
+            {% endif %}
+
+                <form method="POST" >
+                  {% csrf_token %}
+                <h2>Thông tin</h2>
+                <div class="form-row">
+                    <label for="class_id">Mã lớp:</label>
+                    {{form.class_id}}
+                </div>
+                <div class="form-row">
+                    <label for="class_name"> Tên lớp:</label>
+                    {{form.class_name}}
+                </div>
+                <div class="form-row">
+                    <label for="class_factor"> Hệ số lớp</label>
+                    {{form.class_factor}}
+                </div>
+                <div class="form-row">
+                    <label for="number_of_lessons"> Số tiết học:</label>
+                    {{form.number_of_lessons}}
+                </div>
+                <div class="form-row">
+                    <label for="subject"> Môn học </label>
+                    {{form.subject}}
+                </div>
+                <div class="form-actions">
+                    <a class="link-button cancel-btn" href="{% url 'home' %}">Cancel</a>
+                    <button class="link-button save-btn" type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}
